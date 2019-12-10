@@ -14,7 +14,8 @@ class App extends React.Component {
     };
   }
 
-  getUserData = () => {
+
+  componentDidMount() {
     Axios.get(`https://api.github.com/users/${this.state.login}`)
     .then(res => {
       this.setState({
@@ -30,18 +31,30 @@ class App extends React.Component {
 
     })
     .catch(err => {console.log('Erro:', err)})
-  }
-
-  componentDidMount() {
-    this.getUserData()
+    
   }
 
   componentDidUpdate(prevProps, prevState){
     if(prevState.login !== this.state.login){
       this.setState({
-        login:null
+        login: null
       })
-      this.getUserData()
+      // this.getUserData()
+      Axios.get(`https://api.github.com/users/${this.state.login}`)
+      .then(res => {
+        this.setState({
+          isLoading:false,
+          login:res.data.login,
+          avatar_url:res.data.avatar_url,
+          followers:res.data.followers,
+          bio:res.data.bio,
+          name:res.data.name,
+          public_repos:res.data.public_repos,
+          
+        })
+  
+      })
+      .catch(err => {console.log('Erro:', err)})
     }
   }
 
@@ -49,7 +62,7 @@ class App extends React.Component {
     const newUser = {
       login: user,
     };
-    this.setState({ login: [...this.state.login, newUser] });
+    this.setState({ login: [...this.state.login, newUser.login] });
   };
 
   render() {

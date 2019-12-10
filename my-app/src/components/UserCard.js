@@ -12,7 +12,7 @@ export default function UserCard(props) {
         src={
           props.data.isLoading ? (
             <Segment>
-              <Dimmer active>
+              <Dimmer active inverted>
                 <Loader />
               </Dimmer>
               <Image src="/images/wireframe/short-paragraph.png" />
@@ -28,7 +28,7 @@ export default function UserCard(props) {
         <Card.Header>
           {props.data.isLoading ? (
             <Segment>
-              <Dimmer active>
+              <Dimmer active inverted>
                 <Loader />
               </Dimmer>
               <Image src="/images/wireframe/short-paragraph.png" />
@@ -41,7 +41,7 @@ export default function UserCard(props) {
           <span> Followers: {
               props.data.isLoading ? (
                 <Segment>
-                  <Dimmer active>
+                  <Dimmer active inverted>
                     <Loader />
                   </Dimmer>
                   <Image src="/images/wireframe/short-paragraph.png" />
@@ -55,7 +55,7 @@ export default function UserCard(props) {
         {
               props.data.isLoading ? (
                 <Segment>
-                  <Dimmer active>
+                  <Dimmer active inverted>
                     <Loader />
                   </Dimmer>
                   <Image src="/images/wireframe/short-paragraph.png" />
@@ -73,7 +73,7 @@ export default function UserCard(props) {
  `         Public Repositories:  
               ${props.data.isLoading ? (
                 <Segment>
-                  <Dimmer active>
+                  <Dimmer active inverted>
                     <Loader />
                   </Dimmer>
                   <Image src="/images/wireframe/short-paragraph.png" />
@@ -85,7 +85,7 @@ export default function UserCard(props) {
         </a>
       </Card.Content>
       <Card.Content>
-        <UserName lookUpUser={props.lookUpUser} />
+        <UserName data={props.data} lookUpUser={props.lookUpUser} />
       </Card.Content>
     </Card>
   );
