@@ -39,17 +39,11 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState){
     if(prevState.login !== this.state.login){
       this.setState({
-      
+        login:null
       })
       this.getUserData()
     }
   }
-
-  // handleSubmit = (event) => {
-  //   this.setState({
-  //     login: event.target.value
-  //   })
-  // }
 
   lookUpUser = user => {
     const newUser = {
@@ -68,7 +62,7 @@ class App extends React.Component {
           margin: "20% auto"
         }}
       >
-        <UserCard handleSubmit={this.handleSubmit} data={this.state} />
+        <UserCard lookUpUser={this.lookUpUser} data={this.state} />
       </Container>
     );
   }

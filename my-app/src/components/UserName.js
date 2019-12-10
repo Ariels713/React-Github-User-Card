@@ -1,50 +1,41 @@
 import React from "react";
-import { Button, Container } from "semantic-ui-react";
-import { Field, Formik, Form } from "formik";
-import * as Yup from "yup";
+import { Button, Form, Input, Container } from "semantic-ui-react";
 
-const userValidation = Yup.object().shape({
-  city: Yup.string().required("Please Enter User Name")
-});
 
-function UserName({data}) {
-  return (
-    <Formik
-      initialValues={{ login: "" }}
-      validationSchema={userValidation}
-      onSubmit={(values, tools) => {
-        tools.resetForm();
-        data(values.login)
-      }}
-    >
-      {({ errors, touched }) => {
+
+class UserName extends React.Component{
+    constructor(props){
+        super(props)
+        this.state ={
+            login:''
+        }
+    }
+    changeHandler = event => {
+        this.setState({ login: event.target.value})
+        console.log(event.target.value)
+    }
+
+    submitHander = event => {
+        event.preventDefault()
+        this.props.lookUpUser(this.state.login)
+        this.setState({login: ''})
+    }
+
+    render(){
         return (
-          <Container>
-            <Form>
-              {touched.city && errors.city && <p>{errors.city}</p>}
-              <Field
-                name="city"
-                label="User Name"
-                placeholder="Enter User Name"
-                style={{ padding: "7px", width: "50%", marginRight: "1%" }}
-              />
-
-              <Button
-                type="Submit"
-                color="blue"
-                content="Get User!"
-                style={{ marginBottom: "5%", marginTop:'5%' }}
-                // disabled={isSubmitting}
-              />
+            <Form onSubmit={this.submitHander}>
+                <Input 
+                    focus
+                    type='text'
+                    name='login'
+                    value={this.state.login}
+                    onChange={this.changeHandler}
+                    style={{marginTop:'5%', marginBottom:'3%', width:"100%"}}
+                />
+                <Button type='submit' color='teal' style={{width:'100%'}}>Find User</Button>
             </Form>
-          </Container>
         );
-      }}
-    </Formik>
-  );
+    }
 }
 
 export default UserName;
-
-
-// Grabbing Data. Maybe we don't use Formik for this prject

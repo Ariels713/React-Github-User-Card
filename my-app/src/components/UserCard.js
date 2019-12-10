@@ -5,7 +5,7 @@ import { Card, Icon, Image, Dimmer, Loader, Segment } from "semantic-ui-react";
 import UserName from "./UserName";
 
 export default function UserCard(props) {
-  console.log("data", props.data.isLoading);
+//   console.log("data", props);
   return (
     <Card>
       <Image
@@ -85,7 +85,7 @@ export default function UserCard(props) {
         </a>
       </Card.Content>
       <Card.Content>
-        <UserName handleSubmit={props.handleSubmit} />
+        <UserName lookUpUser={props.lookUpUser} />
       </Card.Content>
     </Card>
   );
