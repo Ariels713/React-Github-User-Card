@@ -7,14 +7,14 @@ const userValidation = Yup.object().shape({
   city: Yup.string().required("Please Enter User Name")
 });
 
-function UserName({handleSubmit}) {
+function UserName({data}) {
   return (
     <Formik
-      initialValues={{ name: "" }}
+      initialValues={{ login: "" }}
       validationSchema={userValidation}
       onSubmit={(values, tools) => {
         tools.resetForm();
-        handleSubmit(values.name)
+        data(values.login)
       }}
     >
       {({ errors, touched }) => {
@@ -45,3 +45,6 @@ function UserName({handleSubmit}) {
 }
 
 export default UserName;
+
+
+// Grabbing Data. Maybe we don't use Formik for this prject
